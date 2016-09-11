@@ -24,8 +24,10 @@ for tstep = 1:n
     f = 1/m*ftransform(m)*xtemp; % function value in fourier space
     fp = 1i*(repmat((-m/2:m/2-1)',1,size(f,2))).*f;
     fpp = -(repmat((-m/2:m/2-1)'.^2,1,size(f,2))).*f;
-    xp = real(ftransform(m)\(m*fp));
-    xpp = real(ftransform(m)\(m*fpp)); 
+%    xp = real(ftransform(m)\(m*fp));
+    xp = real(iftransform(m)*fp);
+%    xpp = real(ftransform(m)\(m*fpp)); 
+    xpp = real(iftransform(m)*fpp); 
     xpt = repmat(((xp(:,2).*xpp(:,1)-xp(:,1).*xpp(:,2))./diag((xp*xp')).^2),1,2)...
         .*[xp(:,2),-xp(:,1)];
     

@@ -9,7 +9,7 @@ s = @(t) [(4+cos(3*t)).*cos(t), (4+cos(3*t)).*sin(t)];
 
 %% Part 1 curve shape evolution
 N = 400;    % time discretization
-M = 256;     % space discretization
+M = 64;     % space discretization
 tfinal = 4; % final evolution time
 
 tt = 0:tfinal;
