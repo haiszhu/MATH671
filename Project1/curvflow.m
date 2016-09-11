@@ -1,4 +1,4 @@
-function x2 = curvflow( n, m, x1, t1, t2)
+function [x2,xp] = curvflow( n, m, x1, t1, t2)
 % CURVFLOW - Evolution of Fluid Interface under Curvature Flow 
 %
 % x = curvflow( n, m, t) returns coordinates of fluid interface
@@ -34,6 +34,11 @@ for tstep = 1:n
     xtemp = xtemp + xpt*dt;
 end
 x2 = xtemp;
+if nargout>1
+    f = 1/m*ftransform(m)*x2; 
+    fp = 1i*(repmat((-m/2:m/2-1)',1,size(f,2))).*f;
+    xp = real(iftransform(m)*fp);
+end
 % xpt(1,:), xpt(end,:)  % debug (complex value of xpt exists)
 % nor = norm(xpt(1,:)-xpt(end,:))   % observe the behavior of starting and
 % end point, supposed to be similar in terms of curvature
